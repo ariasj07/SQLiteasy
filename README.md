@@ -32,5 +32,5 @@ conn.close()
 
 
 
-Check to docs: https://app.netlify.com/sites/gorgeous-parfait-3d24cd/deploys/67fd930a5c15a833f75d6aac
+Check to docs: https://gorgeous-parfait-3d24cd.netlify.app/
  
