@@ -31,10 +31,11 @@ conn.close()
 </pre>
 
 ---
-Select data AND<br>
-With SQLiteasy:
-users_with_pro_plan_and_registered = database.fetch_database_by_and("user_isregistered", "1", "user_has_pro_plan", "1", indent=True)<br>
+Select data AND with SQLiteasy:
+<pre>
+users_with_pro_plan_and_registered = database.fetch_database_by_and("user_isregistered", "1", "user_has_pro_plan", "1", indent=True)</pre><br>
 With sqlite3 Python default library:
+<pre>
 import sqlite3
 
 conn = sqlite3.connect('mi_base_de_datos.db')
@@ -49,6 +50,7 @@ users_with_pro_plan_and_registered = cursor.fetchall()
 for user in users_with_pro_plan_and_registered:
     printf"\n{user}"
 conn.close()
+</pre>
 
 
 
