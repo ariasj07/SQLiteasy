@@ -30,6 +30,26 @@ conn.commit()
 conn.close()
 </pre>
 
+---
+Select data AND<br>
+With SQLiteasy:
+users_with_pro_plan_and_registered = database.fetch_database_by_and("user_isregistered", "1", "user_has_pro_plan", "1", indent=True)<br>
+With sqlite3 Python default library:
+import sqlite3
+
+conn = sqlite3.connect('mi_base_de_datos.db')
+cursor = conn.cursor()
+cursor.execute("""
+    SELECT * FROM users
+    WHERE user_isregistered = ? AND user_has_pro_plan = ?
+""", ("1", "1"))
+
+users_with_pro_plan_and_registered = cursor.fetchall()
+
+for user in users_with_pro_plan_and_registered:
+    printf"\n{user}"
+conn.close()
+
 
 
 Check to docs: https://gorgeous-parfait-3d24cd.netlify.app/
