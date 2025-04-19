@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SQLiteasy Docs</title>
+    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+    <link rel="pre class=" alert alert-light"connect" href="https://fonts.googleapis.com">
+    <link rel="pre class=" alert alert-light"connect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+</head>
+
+<body style="width: 90%; margin: auto; font-family: Inter;" class="my-4">
+    <h1>SQLiteasy Docs</h1>
+    <h6>Forget the endless and repetitive SQLite code class="text-primary". Embrace simplicity and efficiency with
+        SQLiteasy.</h6>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Methods</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div id="sidebar" class="col-md-4">
+            <h1>Content</h1>
+            <ul>
+                <li>
+                    <a href="index.html#gettingstarted">Getting started</a>
+                </li>
+                <li>
+                    <a href="index.html#insertingdata">Inserting data</a>
+                </li>
+                <li>
+                    <a href="index.html#selectdata">Select every row</a>
+                </li>
+                <li>
+                    <a href="index.html#selectdatabyand">Select a row by 2 exact (AND) conditions</a>
+                </li>
+                <li>
+                    <a href="index.html#selectdatabyor">Select a row by one or two (OR) conditions</a>
+                </li>
+                <li>
+                    <a href="#methods">Methods</a>
+                    <ul>
+                        <li><a href="methods.html#create_database"><code class="text-primary" class="text-primary">create_database()</code class="text-primary"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#fetch_database"><code class="text-primary" class="text-primary">fetch_database()</code class="text-primary"></a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#fetch_database_by"><code class="text-primary">fetch_database_by()</code></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#fetch_database_by_and"><code class="text-primary" class="text-primary">fetch_database_by_and()</code class="text-primary"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#fetch_database_by_or"><code class="text-primary"
+                                    class="text-primary">fetch_database_by_or()</code class="text-primary"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#insert_database"><code class="text-primary"
+                                    class="text-primary">insert_database()</code class="text-primary"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="methods.html#update_database"><code class="text-primary"
+                                    class="text-primary">update_database()</code class="text-primary"></a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#comparation">Comparation SQLiteasy vs SQlite3</a></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <h1 id="methods">SQLiteasy Methods</h1>
+            <blockquote>
+                Last website update: April, 14, 2025, 16:31<br>
+                Recent SQLiteasy version: 0.2.0<br>
+                SQLiteasy version: 0.1.0 <strong>is deprecated</strong>
+            </blockquote>
+            <p>Learn the syntax and how to use every SQLiteasy method</p>
+            <h3 id="create_database" ><code class="text-primary">create_database()</code class="text-primary"></h3>
+            <p>The <code class="text-primary">create_database()</code class="text-primary"> method is the first step you want to do, after creating a new SQLiteasy class intance. It establishes a connection to the database specified in the class constructor, creates a cursor for executing SQL commands, executes the table creation process, and finally closes the connection to ensure proper resource management.</p>
+            <pre class="alert alert-light">...<br>database.create_database()<br>...</pre>
+            <h3 id="fetch_database" ><code class="text-primary">fetch_database(indent=bool)</code class="text-primary"></h3>
+            <p>The <code class="text-primary">fetch_database()</code class="text-primary"> method prints and return all the data stored in the database by executing a <code class="text-primary">SELECT * FROM database.db</code class="text-primary"> query. This method serves two purposes: it prints the data to the console and also returns it as a result. The <code class="text-primary">indent</code class="text-primary"> parameter, which is a boolean, determines the format of the printed output. When <code class="text-primary">indent=True</code class="text-primary">, the data is displayed in a well-formatted and readable manner. If <code class="text-primary">indent=False</code class="text-primary">, the data is printed in a compact, unformatted style. This method is particularly useful for quickly inspecting or processing the entire dataset.</p>
+            <pre class="alert alert-light" class="alert alert-light">all_users = fetch_database(indent=True)</pre class="alert alert-light">
+            <h3 id="fetch_database_by" ><code class="text-primary">fetch_database_by()</code class="text-primary"></h3>
+            <p>The <code class="text-primary">fetch_database_by(where, by, indent=bool)</code class="text-primary"> method allows you to retrieve a specific row from the database based on a condition. You specify the column name and the value to match. For example:</p>
+            <pre class="alert alert-light" class="alert alert-light">user_josue = fetch_database_by("user_name", "josue", indent=True)</pre class="alert alert-light">
+            <p>This will return and print the row where the value in the <code class="text-primary">user_name</code class="text-primary"> column is <code class="text-primary">"josue"</code class="text-primary">. The <code class="text-primary">indent</code class="text-primary"> parameter determines the format of the printed output. When <code class="text-primary">indent=True</code class="text-primary">, the data is displayed in a well-formatted and readable manner. If <code class="text-primary">indent=False</code class="text-primary">, the data is printed in a compact, unformatted style. This method is useful for retrieving and inspecting specific rows of data efficiently.</p>
+            <h3 id="fetch_database_by_and" ><code class="text-primary">fetch_database_by_and()</code class="text-primary"></h3>
+            <p>This method prints and return the row where <strong>both specified conditions</strong> are <code class="text-primary">True</code class="text-primary">. It uses an AND logic, meaning that for the row to be returned, both conditions must be satisfied simultaneously. If condition 1 is <code class="text-primary">True</code class="text-primary"> and condition 2 is also <code class="text-primary">True</code class="text-primary">, the method will return the matching row. However, if either condition 1 or condition 2 is <code class="text-primary">False</code class="text-primary">, the method will not return any results. This ensures pre class="alert alert-light"cise filtering based on multiple criteria.</p>
+            <pre class="alert alert-light">users_with_pro_plan_and_registered = database.fetch_database_by_and("user_isregistered", "1", "user_has_pro_plan", "1", indent=True)</pre>
+            <h3 id="fetch_database_by_or" ><code class="text-primary">fetch_database_by_or()</code class="text-primary"></h3>
+            <p>The <code class="text-primary">fetch_database_by_or()</code class="text-primary"> method prints and return rows where <strong>at least one of the specified conditions</strong> is <code class="text-primary">True</code class="text-primary">. It operates using OR logic, meaning that if either condition 1 or condition 2 is satisfied, or if both are satisfied, the method will return the matching rows. This makes it useful for scenarios where you need to filter data based on multiple optional criteria. For example, if condition 1 matches a specific value in one column and condition 2 matches a value in another column, the method will include rows that meet either or both conditions in the result.</p>
+            <pre class="alert alert-light">users_with_pro_plan_or_registered = database.fetch_database_by_or("user_isregistered", "1", "user_has_pro_plan", "1", indent=True)</pre>
+            <h3 id="insert_database" ><code class="text-primary">insert_database()</code class="text-primary"></h3>
+            <p>The <code class="text-primary">insert_database()</code class="text-primary"> method enables you to add new data entries into the database. <strong>It is essential</strong> to specify the parameter names and provide values for all the columns defined in the database. For instance, if your database contains columns named <code class="text-primary">"user_name"</code class="text-primary"> and <code class="text-primary">"user_email"</code class="text-primary">, you <strong>must</strong> include both parameters when calling this method. This ensures that the data is inserted correctly and aligns with the database schema.</p>
+            <pre class="alert alert-light">database.insert_database("user_name"="New user", "user_email"="newuseremail@gmail.com")</pre class="alert alert-light">
+            <h3 id="update_database" ><code class="text-primary">update_database()</code class="text-primary"></h3>
+            <p>The <code class="text-primary">update_database()</code class="text-primary"> method allows you to modify a specific value in the database. It requires the following parameters:</p>
+            <ul>
+                <li><code class="text-primary">column_to_update</code class="text-primary">: The column whose value will be updated.</li>
+                <li><code class="text-primary">condition_column</code class="text-primary">: The column used to identify the row(s) to update.</li>
+                <li><code class="text-primary">condition_value</code class="text-primary">: The value in the <code class="text-primary">condition_column</code class="text-primary"> that must match for the update to occur.</li>
+                <li><code class="text-primary">new_value</code class="text-primary">: The new value to assign to the specified column.</li>
+            </ul>
+            <p>This method is useful for making targeted updates to your database while ensuring that only the intended rows are modified.</p>
+            <pre class="alert alert-light">database.update_database(column_to_update="user_has_pro_plan", condition_column="user_name", condition_value="josue", new_value="1")<br># I'm giving the pro plan to the user "josue"</pre>
+
+        </div>
+
+        <div class="card p-0 border-0">
+            <div class="card-body">
+                <h5 class="card-title">SQLiteasy</h5>
+                <p class="card-subtitle">Free an open-source Python library to make the Sqlite interaction easier</p>
+                <a href="https://github.com/ariasj07/SQLiteasy" class="link link-secondary"">Github</a>
+                <a href="https://pypi.org/project/sqliteasy/" class="link link-secondary">PyPi</a>
+                <a href="mailto:josuearias.crc@gmail.com" class="link link-secondary">Email</a>
+            </div>
+        </div>
+
+        <style>
+            blockquote {
+                border-left: 5px solid #ccc;
+                padding: 10px 20px;
+                margin: 20px 0;
+            }
+            #sidebar {
+        position: sticky;
+        top: 0px;
+        height: 100%;
+    }
+    @media (max-width: 768px) {
+        #sidebar {
+            position: relative;
+            top: auto;
+            height: auto; /* Reset height for smaller screens */
+        }
+    }
+        </style>
+
+</body>
+
+</html>
