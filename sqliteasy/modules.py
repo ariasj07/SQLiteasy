@@ -30,7 +30,7 @@ class SQLiteasy:
                 case ("float", True):
                     self.database_pre_query.append(f"{column_name} REAL NOT NULL")
                 case ("float", False):
-                    self.database_pre_query.append(f"{column_name} REAT")
+                    self.database_pre_query.append(f"{column_name} REAL")
                 case ("boolean", True):
                     self.database_pre_query.append(f"{column_name} BOOLEAN NOT NULL")
                 case ("boolean", False):
