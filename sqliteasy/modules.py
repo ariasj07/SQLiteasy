@@ -2,6 +2,8 @@ import sqlite3
 class SQLiteasy:
     def __init__(self, database_name: str, database_entries: dict):
         self.database_name = database_name
+        if self.database_name.endswith(".db"):
+            raise ValueError("SQLiteasy: You must pass the database name without .db")
         self.database_pre_query = []
         self.database_entries = database_entries
         self.database_final_query = f"ID INTEGER PRIMARY KEY AUTOINCREMENT, {self.database_create_final_query()}"
@@ -28,7 +30,7 @@ class SQLiteasy:
                 case ("float", True):
                     self.database_pre_query.append(f"{column_name} REAL NOT NULL")
                 case ("float", False):
-                    self.database_pre_query.append(f"{column_name} REAL")
+                    self.database_pre_query.append(f"{column_name} REAT")
                 case ("boolean", True):
                     self.database_pre_query.append(f"{column_name} BOOLEAN NOT NULL")
                 case ("boolean", False):
@@ -115,6 +117,8 @@ class SQLiteasy:
             conn.close()
 
     def create_database(self):
+        if ".db" in self.database_name:
+            raise ValueError("SQLiteasy: You must pass the database name without .db")
         conn = sqlite3.connect(f"{self.database_name}.db")
         cursor = conn.cursor()
         try:
@@ -122,7 +126,6 @@ class SQLiteasy:
         except Exception as e:
             print("SQLiteasy: Something went wrong")
             print(e)
-            
         conn.close()
         
     def insert_database(self, **kwargs):
