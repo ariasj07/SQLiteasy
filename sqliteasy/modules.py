@@ -132,7 +132,7 @@ class SQLiteasy:
         from collections import Counter
         verify = list(self.database_entries.keys())
         sended_keys = list(kwargs.keys())
-        if Counter(verify) == Counter(sended_keys):
+        if Counter(verify) == Counter(sended_keys) and None not in list(kwargs.values()):
             try:
                 conn = sqlite3.connect(f"{self.database_name}.db")
                 cursor = conn.cursor()
@@ -143,8 +143,8 @@ class SQLiteasy:
             except:
                 raise TypeError("SQLiteasy: You have inserted the correct values, but there is a problem with the database, check if the database exists, try with .create_database()") 
         else:
-            raise ValueError("SQLiteasy: You must pass the same keys as the database entries")
-        
+            raise ValueError("SQLiteasy: You must pass the same amount of values as the database entries, and every parameter must be passed with the same name as the database entries. This problem also ocurr if you tried to insert a None value")
+    
     def update_database(self, column_to_update: str, condition_column: str, condition_value, new_value: str):
         conn = sqlite3.connect(f"{self.database_name}.db")
         cursor = conn.cursor()
@@ -159,11 +159,32 @@ class SQLiteasy:
             print("An error occurred:", e)
         finally:
             conn.close()
+    def delete_database(self, condition_column: str, condition_value):
+        conn = sqlite3.connect(f"{self.database_name}.db")
+        cursor = conn.cursor()
+        try:
+            cursor.execute(
+                f"DELETE FROM {self.database_name} WHERE {condition_column} = ?", 
+                (condition_value,)
+            )
+            conn.commit()
+            print("Values updated")
+        except sqlite3.Error as e:
+            print("An error occurred:", e)
+        finally:
+            conn.close()
 
 
-""" entries_to_test = {
-    "user_name": {"type": "string", "notnull": True},
-    "user_email": {"type": "string", "notnull": True},
-    "user_isregistered": {"type": "boolean", "notnull": False},
+entries = {
+    "original_url": {"type": "string", "notnull": True},
+    "created_url": {"type": "string", "notnull": True},
+    "created_url_id": {"type": "string", "notnull": True},
+    "visited_amount": {"type": "string", "notnull": True},
+    "created_time": {"type": "string", "notnull": True},
 }
-"""
+# test
+
+if __name__ == __main__:
+    database = SQLiteasy("database", entries)
+    database.create_database()
+
