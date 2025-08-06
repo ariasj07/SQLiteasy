@@ -184,7 +184,8 @@ entries = {
 }
 # test
 
-if __name__ == __main__:
+if __name__ == "__main__":
     database = SQLiteasy("database", entries)
     database.create_database()
+
 
